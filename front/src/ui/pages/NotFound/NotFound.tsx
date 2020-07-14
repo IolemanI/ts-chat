@@ -1,9 +1,10 @@
-import React, { FunctionComponent } from 'react';
+import React from 'react';
 
-export default function NotFound(): FunctionComponent {
+const NotFound: React.SFC<{}> = () => {
   return (
     <div>
       <h1>Not Found</h1>
     </div>
   );
 }
+export default NotFound;
