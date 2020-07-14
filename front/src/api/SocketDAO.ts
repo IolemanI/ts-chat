@@ -21,7 +21,7 @@ export enum ChatEvent {
 
 let socket: ISocket;
 
-class FLSSocket {
+class SocketDAO {
   public entity: any;
 
   constructor() {
@@ -56,4 +56,4 @@ class FLSSocket {
   }
 }
 
-export default new FLSSocket().entity;
+export default new SocketDAO().entity;
