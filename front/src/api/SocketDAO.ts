@@ -12,7 +12,6 @@ export interface ISocket {
 export enum ChatEvent {
   CONNECT = 'connect',
   DISCONNECT = 'disconnect',
-  DISCONNECTING = 'disconnecting',
   JOIN = 'join',
   MESSAGE = 'message',
   NEW_JOIN = 'new_join',

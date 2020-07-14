@@ -5,7 +5,6 @@ const { uniqueNamesGenerator, adjectives, colors, animals } = require('unique-na
 export enum ChatEvent {
   CONNECT = 'connect',
   DISCONNECT = 'disconnect',
-  DISCONNECTING = 'disconnecting',
   JOIN = 'join',
   MESSAGE = 'message',
 
@@ -67,7 +66,7 @@ export default class ChatServer {
       });
 
       socket.on(ChatEvent.DISCONNECT, () => {
-        console.log('[server](disconnected)', socket.id);
+        console.log('[server](disconnect)', socket.id);
         const author = this.room.find(client => client.id === socket.id);
 
         if (!author) return;

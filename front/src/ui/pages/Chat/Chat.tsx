@@ -5,6 +5,7 @@ import { History } from 'history';
 
 import { RouterPathEnum } from '../index';
 import { join, sendMessage } from '../../../redux/controllers/chat.controller';
+import { IMessage } from '../../../redux/reducers/chat.reducer';
 import './Chat.css';
 
 interface IProps {
@@ -14,8 +15,11 @@ interface IProps {
     name: string,
   };
   room: Array<any>;
-  messages: Array<any>;
+  messages: Array<IMessage>;
   history: History;
+}
+interface IState {
+  message: string;
 }
 
 const Chat: React.StatelessComponent<IProps> = (props: IProps) => {
@@ -42,10 +46,10 @@ const Chat: React.StatelessComponent<IProps> = (props: IProps) => {
 
       <div className="container">
         <ul className="room-members">
-          {props.room.map(item => (<li>{item.name}</li>))}
+          {props.room.map(item => (<li key={item.name}>{item.name}</li>))}
         </ul>
         <ul className="messages">
-          {props.messages.map(item => (<li><span>{item.author}</span> - {item.message}</li>))}
+          {props.messages.map((item, index) => (<li key={index}><span>{item.author}</span> - {item.message}</li>))}
         </ul>
       </div>
       

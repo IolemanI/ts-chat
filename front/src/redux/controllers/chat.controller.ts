@@ -1,17 +1,15 @@
 import { actions } from '../reducers/chat.reducer';
 import SocketDAO, { ChatEvent } from '../../api/SocketDAO';
 
-export const connectSocket = () => async (dispatch, getState) => {
+export const connectSocket = () => async (dispatch) => {
   try {
     const socket = await SocketDAO.connect();
 
-    console.log('socket', socket);
-    
     if (socket && socket.id) {
       await dispatch(actions.setConnected(true));
     }
 
-    socket.on(ChatEvent.CONNECT, (s) => {
+    socket.on(ChatEvent.CONNECT, () => {
       dispatch(actions.setConnected(true));
     });
     socket.on(ChatEvent.NEW_JOIN, data => {
@@ -45,7 +43,7 @@ export const join = () => async (dispatch, getState) => {
   }
 };
 
-export const sendMessage = message => async dispatch => {
+export const sendMessage = (message: string) => async dispatch => {
   try {
     SocketDAO.sendMessage(message);
   } catch (e) {
